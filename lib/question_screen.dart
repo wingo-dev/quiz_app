@@ -42,9 +42,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
             children: [
               ClipOval(
                 child: Image.asset(
-                  'assets/images/vegitable.jpg',
-                  width: 150,
-                  fit: BoxFit.cover,
+                  'assets/images/angela_he.png',
+                  width: 20,
+                  height: 250,
+                  fit: BoxFit.contain,
                 ),
               ),
               const SizedBox(

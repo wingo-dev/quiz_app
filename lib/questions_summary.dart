@@ -20,14 +20,18 @@ class QuestionsSumary extends StatelessWidget {
                     height: 30,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 150, 198, 241),
+                      color: data['user_answer'] == data['correct_answer']
+                          ? const Color.fromARGB(255, 0, 107, 45)
+                          : const Color.fromARGB(255, 255, 0, 0),
                       borderRadius: BorderRadius.circular(100),
                     ),
                     child: Text(
                       ((data['question_index'] as int) + 1).toString(),
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 255, 0, 200),
+                        color: data['user_answer'] == data['correct_answer']
+                            ? const Color.fromARGB(255, 255, 255, 255)
+                            : const Color.fromARGB(255, 21, 255, 0),
                       ),
                     ),
                   ),
@@ -42,7 +46,7 @@ class QuestionsSumary extends StatelessWidget {
                           data['question'] as String,
                           style: GoogleFonts.lato(
                             color: Colors.white,
-                            fontSize: 16,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -52,13 +56,15 @@ class QuestionsSumary extends StatelessWidget {
                         Text(
                           data['user_answer'] as String,
                           style: const TextStyle(
-                            color: Color.fromARGB(255, 7, 255, 40),
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            fontSize: 16,
                           ),
                         ),
                         Text(
                           data['correct_answer'] as String,
                           style: const TextStyle(
-                            color: Color.fromARGB(255, 7, 247, 255),
+                            color: Color.fromARGB(255, 76, 175, 80),
+                            fontSize: 16,
                           ),
                         ),
                       ],
