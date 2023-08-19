@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/data/questions.dart';
 import 'package:quiz_app/questions_summary.dart';
 
@@ -28,6 +29,12 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final summaryData = getSummaryData();
+    final numTotalQuestions = questions.length;
+    final correctQuestions = summaryData.where((data) {
+      return data['user_answer'] == data['correct_answer'];
+    }).length;
+
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -35,11 +42,43 @@ class ResultScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("You answered x out of y questions!"),
+            RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                style: GoogleFonts.lato(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: const Color.fromARGB(255, 255, 238, 0),
+                ),
+                children: [
+                  const TextSpan(
+                    text: "You answered ",
+                  ),
+                  TextSpan(
+                    text: '$correctQuestions',
+                    style: GoogleFonts.lato(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                    ),
+                  ),
+                  const TextSpan(text: ' out of '),
+                  TextSpan(
+                    text: '$numTotalQuestions',
+                    style: GoogleFonts.lato(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: const Color.fromARGB(255, 76, 175, 80),
+                    ),
+                  ),
+                  const TextSpan(text: ' questions!'),
+                ],
+              ),
+            ),
             const SizedBox(
               height: 20,
             ),
-            QuestionsSumary(getSummaryData()),
+            QuestionsSumary(summaryData),
             const SizedBox(
               height: 20,
             ),
